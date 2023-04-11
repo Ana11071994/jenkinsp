@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+              checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ana11071994/ppj.git']]) 
+            }
+        }
+        stage('Build') {
+            steps {
+                git 'https://github.com/Ana11071994/ppj.git'
+                bat 'python Untitled4.py'
+            }
+        }
+        stage('test') {
+            steps {
+                echo 'the job has been tested'
+            }
+        }
+    }
+}
